@@ -1,48 +1,39 @@
 const axios = require("axios");
-const fs = require("fs-extra");
 
 module.exports = {
- config: {
- name: "cdp",
- aliases: [],
- version: "1.0",
- author: "XyryllPanget",
- countDown: 5,
- role: 0,
- shortDescription: {
- en: "couple dp"
- },
- longDescription: {
- en: "couple dp"
- },
- category: "love",
- guide: {
- en: "{pn}"
- }
- },
+  config: {
+    name: "copuledp",
+    aliases: ["cdp"],
+    version: "1.7",
+    author: "MahMUD",
+    countDown: 2,
+    role: 0,
+    longDescription: "Fetch a random couple DP for nibba and nibbi",
+    category: "love",
+    guide: "{pn}"
+  },
 
- onStart: async function ({ api, event, args }) {
- try {
- const { data } = await axios.get(
- "https://tanjiro-api.onrender.com/cdp?api_key=tanjiro"
- );
- const maleImg = await axios.get(data.male, { responseType: "arraybuffer" });
- fs.writeFileSync(__dirname + "/tmp/img1.png", Buffer.from(maleImg.data, "utf-8"));
- const femaleImg = await axios.get(data.female, { responseType: "arraybuffer" });
- fs.writeFileSync(__dirname + "/tmp/img2.png", Buffer.from(femaleImg.data, "utf-8"));
+  onStart: async function ({ message }) {
+    try {
+      const response = await axios.get("https://mahmud-cdp.onrender.com/dp", {
+        headers: { "author": module.exports.config.author }
+      });
 
- const msg = "「 Here's your pair Dp✨ 」";
- const allImages = [
- fs.createReadStream(__dirname + "/tmp/img1.png"),
- fs.createReadStream(__dirname + "/tmp/img2.png")
- ];
+      if (response.data.error) return message.reply(response.data.error);
 
- return api.sendMessage({
- body: msg,
- attachment: allImages
- }, event.threadID, event.messageID);
- } catch (error) {
- console.error(error);
- }
- }
+      const { male, female } = response.data;
+      if (!male || !female) return message.reply("Couldn't fetch couple DP. Try again later.");
+
+      let attachments = [
+        await global.utils.getStreamFromURL(male),
+        await global.utils.getStreamFromURL(female)
+      ];
+
+      await message.reply({ body: "Here is your couple DP!", attachment: attachments });
+
+    } catch (error) {
+      console.error(error);
+      message.reply("Error fetching couple DP. Please try again later.");
+    }
+  }
 };
