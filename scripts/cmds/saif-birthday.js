@@ -3,7 +3,7 @@ module.exports = {
         name: "saif-birthday",
         version: "1.0",
         author: "Samir",
-        aliases: ["saif-birthday"],
+        aliases: ["bday"],
         countDown: 5,
         role: 0,
         category: "birthday🎀",
