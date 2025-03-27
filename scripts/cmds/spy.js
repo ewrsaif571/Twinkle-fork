@@ -57,14 +57,14 @@ module.exports = {
 
       // Construct and send the user's information with avatar
       const userInformation = `
- 𝗨𝘀𝗲𝗿 𝗜𝗻𝗳𝗼𝗿𝗺𝗮𝘁𝗶𝗼𝗻
+ 𝗨𝗦𝗘𝗥 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡 
 ────────────────
-<🎀 𝗡𝗮𝗺𝗲: ${userInfo[uid].name}
-<ⓕ 𝗙𝗕 𝗨𝗿𝗹: ${userInfo[uid].profileUrl}
-<⚤ 𝗚𝗲𝗻𝗱𝗲𝗿: ${genderText}
-<✨ 𝗨𝘀𝗲𝗿 𝘁𝘆𝗽𝗲: ${userInfo[uid].type}
-<🤍 𝗙𝗿𝗶𝗲𝗻𝗱 𝘀𝘁𝗮𝘁𝘂𝘀: ${userInfo[uid].isFriend ? " <🎀 Yes" : " No"}
-<🎂 𝗕𝗶𝗿𝘁𝗵𝗱𝗮𝘆 𝘁𝗼𝗱𝗮𝘆: ${userInfo[uid].isBirthday ? " <🎀 Yes" : " No"}
+•𝗇𝖺𝗆𝖾: ${userInfo[uid].name}
+•𝖥𝖡 𝗎𝗋𝗅: ${userInfo[uid].profileUrl}
+•𝗀𝖾𝗇𝖽𝖾𝗋: ${genderText}
+•𝗎𝗌𝖾𝗋 𝗍𝗒𝗉𝖾: ${userInfo[uid].type}
+•𝖿𝗋𝗂𝖾𝗇𝖽 𝗐𝗂𝗍𝗁 𝖻𝗈𝗍: ${userInfo[uid].isFriend ? " Yes" : " No"}
+•𝖻𝗂𝗋𝗍𝗁𝖽𝖺𝗒 𝗍𝗈𝖽𝖺𝗒: ${userInfo[uid].isBirthday ? " yes" : "no"}
 ────────────────
       `;
 
