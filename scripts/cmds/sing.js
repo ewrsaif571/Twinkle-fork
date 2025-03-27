@@ -1,74 +1,58 @@
-const axios = require('axios');
-const fs = require('fs');
-const a = `https://www.noobz-api.rf.gd/`;
+const axios = require("axios");
+
+const baseApiUrl = async () => {
+  const base = 'https://mahmud-sing.onrender.com';
+  return base;
+};
+
 module.exports = {
-  config: {
-    name: 'sing',
-    category: 'media',
-    author: 'Nyx🐢',
-  },
+    config: {
+        name: "sing",
+        version: "1.7",
+        author: "MahMUD", 
+        countDown: 10,
+        role: 0,
+        category: "music",
+        guide: "{p}sing [query]"
+    },
 
-  onStart: async ({ message, args }) => {
-    const query = args.join(' ');
-    if (!query) return message.reply("Please provide a search query!");
+    onStart: async function ({ api, event, args, message }) {
+        if (args.length === 0) {
+            return message.reply("❌ | Please provide a sing name janu.");
+        }
 
-    try {
-      const searchResponse = await axios.get(`${a}api/yts?name=${query}`);
-      const data = searchResponse.data.data.slice(0, 6);
-      const thumbnails = await Promise.all(
-        data.map((item) => global.utils.getStreamFromUrl(item.thumbnail))
-      );
+        try {
+            const query = encodeURIComponent(args.join(" "));
+            const apiUrl = `${await baseApiUrl()}/sing?query=${query}`;
 
-      let body = '';
-      data.forEach((item, index) => {
-        body += `${index + 1}. ${item.name}\nDuration: ${item.dur}\n\n`;
-      });
+            message.reply("𝐖𝐚𝐢𝐭 𝐤𝐨𝐫𝐨 𝐣𝐚𝐧 <😘");
 
-      const reply = await message.reply({
-        body: `Search Results:\n\n${body}\nPlease select a number (1-6).`,
-        attachment: thumbnails,
-      });
+            const response = await axios.get(apiUrl, {
+                responseType: "stream",
+                headers: { "author": module.exports.config.author }
+            });
 
-      global.GoatBot.onReply.set(reply.messageID, {
-        commandName: 'sing',
-        messageID: reply.messageID,
-        result: data,
-      });
-    } catch (error) {
-      message.reply(`Error: ${error.message}`);
+            console.log("Response:", response);
+
+            if (response.data.error) {
+                return message.reply(`❌ Error: ${response.data.error}`);
+            }
+
+            message.reply({
+                body: `✅ Here's your song: ${args.join(" ")}`,
+                attachment: response.data
+            });
+
+        } catch (error) {
+            console.error("Error:", error.message);
+
+            if (error.response) {
+                console.error("Response error data:", error.response.data);
+                console.error("Response status:", error.response.status);
+                return message.reply(`❌ Error: ${error.response.data.error || error.message}`);
+            }
+
+            message.reply("❌ An error occurred while processing your request.");
+        }
     }
-  },
-
-  onReply: async ({ Reply, message, event }) => {
-    const { result, messageID } = Reply;
-    const { senderID, body } = event;
-
-    const choice = parseInt(body.trim());
-    if (isNaN(choice) || choice < 1 || choice > 6) {
-      return message.reply("Please select a valid number between 1 and 5.");
-    }
-
-    const selectedVideo = result[choice - 1];
-    if (!selectedVideo) {
-      return message.reply("Invalid choice. Please try again.");
-    }
-    message.unsend(messageID);
-
-    try {
-   const id = selectedVideo.id;
-      const response = await axios.get(`https://fastapi-nyx-production.up.railway.app/y?url=https://www.youtube.com/watch?v=${id}&type=mp3`)
-  const songUrl = response.data.url;
-      const filePath = __dirname + `/cache/${selectedVideo.name}.mp3`;
-      fs.writeFileSync(filePath, Buffer.from((await axios.get(songUrl, { responseType: "arraybuffer" })).data, "binary"))
-      const tinyUrlResponse = await axios.get(`https://tinyurl.com/api-create.php?url=${songUrl}`);
-      const tinyUrl = tinyUrlResponse.data;
-
-      await message.reply({
-        body: `Here's your requested song: ${selectedVideo.name}\nDuration: ${selectedVideo.dur}\nDownload Link: ${tinyUrl}`,
-        attachment: fs.createReadStream(filePath)
-      }, () => fs.unlinkSync(filePath));
-    } catch (error) {
-      message.reply("Error: Unable to fetch the song. Please try again later.");
-    }
-  },
 };
