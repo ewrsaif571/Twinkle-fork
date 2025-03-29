@@ -16,15 +16,15 @@ config: {
   onStart: async function ({ api, event }) {
   try {
     const ownerInfo = {
-      ɴᴀᴍᴇ: '𝗡𝗶𝗿𝗼𝗯 𝗜𝘀𝗹𝗮𝗺',
-      ɢᴇɴᴅᴇʀ: '𝗠𝗮𝗹𝗲',
-      ᴀɢᴇ: '15+',
-      ʜᴇɪɢʜᴛ: '5-4',
-      ғʙ ᴜʀʟ: 'https://www.facebook.com/share/17U3McEtUQ/',
-      nick: '𝗦 𝗔 𝗜 𝗙'
+      owner: '𝖭𝗂𝗋𝗈𝖻 𝖨𝗌𝗅𝖺𝗆',
+      gender: '𝖬𝖺𝗅𝖾',
+      age: '15+',
+      height: '5-4',
+      facebook: 'https://m.me/ewrsaif570',
+      nick: '𝖲 𝖠 𝖨 𝖥'
     };
 
-    const bold = 'https://i.imgur.com/yOIItSs.gif'; // Replace with your Google Drive videoid link https://drive.google.com/uc?export=download&id=here put your video id
+    const bold = 'https://i.imgur.com/m5HfIz9.mp4'; // Replace with your Google Drive videoid link https://drive.google.com/uc?export=download&id=here put your video id
 
     const tmpFolderPath = path.join(__dirname, 'tmp');
 
@@ -38,7 +38,7 @@ config: {
     fs.writeFileSync(videoPath, Buffer.from(videoResponse.data, 'binary'));
 
     const response = `
-Owner Information: <3🎀
+Owner Information: <🎀
 Name: ${ownerInfo.name}
 Gender: ${ownerInfo.gender}
 Age: ${ownerInfo.age}
@@ -54,7 +54,7 @@ Nick: ${ownerInfo.nick}
     }, event.threadID, event.messageID);
 
     if (event.body.toLowerCase().includes('ownerinfo')) {
-      api.setMessageReaction('🚀', event.messageID, (err) => {}, true);
+      api.setMessageReaction('🙉', event.messageID, (err) => {}, true);
     }
   } catch (error) {
     console.error('Error in ownerinfo command:', error);
