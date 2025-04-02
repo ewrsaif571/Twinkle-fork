@@ -7,7 +7,7 @@ const userDataFilePath = path.join(__dirname, 'word.json');
 module.exports = {
   config: {
     name: "wordguess",
-    aliases: ["wordguess" "wdg"],
+    aliases: ["wordguess", "wdg"], 
     version: "1.0",
     author: "Kshitiz",
     role: 0,
@@ -45,30 +45,26 @@ module.exports = {
   },
 
   onReply: async function ({ message, event, Reply, usersData }) {
+    const { commandName, messageID, correctAnswer } = Reply;
     const userAnswer = event.body.trim().toLowerCase();
-    const correctAnswer = Reply.correctAnswer.toLowerCase();
+    const correctAnswerLower = correctAnswer.toLowerCase();
 
-    if (userAnswer === correctAnswer) {
+    if (userAnswer === correctAnswerLower) {
       const userID = event.senderID;
       await addCoins(userID, 1000);
-      await message.reply("🎉🎊 Congratulations! Your answer is correct. You have received 1000 coins.");
+      await message.reply("🎉 Congratulations! Your answer is correct. You have received 1000 coins.");
     } else {
-      await message.reply(`🥺 Oops! Wrong answer. The correct answer was: ${Reply.correctAnswer}`);
+      await message.reply(`🥺 Oops! Wrong answer. The correct answer was: ${correctAnswer}`);
     }
 
+    // Clean up messages
     try {
       await message.unsend(event.messageID);
+      if (commandName === this.config.name) {
+        await message.unsend(messageID);
+      }
     } catch (error) {
       console.error("Error while unsending message:", error);
-    }
-
-    const { commandName, messageID } = Reply;
-    if (commandName === this.config.name) {
-      try {
-        await message.unsend(messageID);
-      } catch (error) {
-        console.error("Error while unsending question:", error);
-      }
     }
   }
 };
@@ -88,7 +84,7 @@ async function addCoins(userID, amount) {
   if (!userData) {
     userData = { money: 0 };
   }
-  userData.money += amount;
+  userData.money = (userData.money || 0) + amount;
   await saveUserData(userID, userData);
 }
 
@@ -101,19 +97,16 @@ async function getUserData(userID) {
     if (error.code === 'ENOENT') {
       await fs.writeFile(userDataFilePath, '{}');
       return null;
-    } else {
-      console.error("Error reading user data:", error);
-      return null;
     }
+    console.error("Error reading user data:", error);
+    return null;
   }
 }
 
 async function saveUserData(userID, data) {
   try {
-    const userData = await getUserData(userID) || {};
-    const newData = { ...userData, ...data };
     const allUserData = await getAllUserData();
-    allUserData[userID] = newData;
+    allUserData[userID] = { ...(allUserData[userID] || {}), ...data };
     await fs.writeFile(userDataFilePath, JSON.stringify(allUserData, null, 2), 'utf8');
   } catch (error) {
     console.error("Error saving user data:", error);
@@ -125,6 +118,10 @@ async function getAllUserData() {
     const data = await fs.readFile(userDataFilePath, 'utf8');
     return JSON.parse(data);
   } catch (error) {
+    if (error.code === 'ENOENT') {
+      await fs.writeFile(userDataFilePath, '{}');
+      return {};
+    }
     console.error("Error reading user data:", error);
     return {};
   }
@@ -135,24 +132,25 @@ async function getTopUsers(usersData, api) {
   const userIDs = Object.keys(allUserData);
   const topUsers = [];
 
-  for (const userID of userIDs) {
-    api.getUserInfo(userID, async (err, userInfo) => {
-      if (err) {
-        console.error("Failed to retrieve user information:", err);
-        return;
-      }
-
-      const username = userInfo[userID].name;
-      if (username) {
-        const userData = allUserData[userID];
-        topUsers.push({ username, money: userData.money });
-      }
+  // Use Promise.all to handle multiple async calls
+  const userInfoPromises = userIDs.map(userID => {
+    return new Promise((resolve) => {
+      api.getUserInfo(userID, (err, userInfo) => {
+        if (err) {
+          console.error("Failed to retrieve user information:", err);
+          resolve(null);
+        } else {
+          const username = userInfo[userID]?.name || `User ${userID}`;
+          const money = allUserData[userID]?.money || 0;
+          resolve({ username, money });
+        }
+      });
     });
-  }
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(topUsers.sort((a, b) => b.money - a.money).slice(0, 5));
-    }, 2000);
   });
-          }
+
+  const users = await Promise.all(userInfoPromises);
+  return users
+    .filter(user => user !== null)
+    .sort((a, b) => b.money - a.money)
+    .slice(0, 5);
+}
