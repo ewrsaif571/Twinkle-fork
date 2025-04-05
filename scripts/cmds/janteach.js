@@ -69,7 +69,7 @@ module.exports.onStart = async ({ api, event, args, usersData }) => {
     }
 
       if (args[0] === "edit") {
-      const allowedUserID = "61556006709662";
+      const allowedUserID = "61559946582981";
       if (uid !== allowedUserID) {
       return api.sendMessage("❌ Unauthorized!", event.threadID, event.messageID);
       }
