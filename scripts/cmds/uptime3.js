@@ -39,29 +39,15 @@ module.exports = {
       // NEON FUTURISTIC STYLE MESSAGE
       const message = `
 ✦ ━━━━━━━ ✧ ━━━━━━━ ✦
-   𝗧𝗪𝗜𝗡𝗞𝗟𝗘 𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗦 >🎀
+   𝗧𝗪𝗜𝗡𝗞𝗟𝗘 𝗦𝗧𝗔𝗧𝗦 >🎀
 ✦ ━━━━━━━ ✧ ━━━━━━━ ✦
-
-⏳ | 𝗨𝗣𝗧𝗜𝗠𝗘 » ${uptimeString}
-👥 | 𝗨𝗦𝗘𝗥𝗦 » ${allUsers.length.toLocaleString()}
-💬 | 𝗧𝗛𝗥𝗘𝗔𝗗𝗦 » ${allThreads.length.toLocaleString()}
-🔥 | 𝗔𝗖𝗧𝗜𝗩𝗘 » ${activeThreads.toLocaleString()}
-✉️ | 𝗠𝗘𝗦𝗦𝗔𝗚𝗘𝗦 » ${totalMessages.toLocaleString()}
-   
-✦ ━━━━━━━ ✧ ━━━━━━━ ✦
-  𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢 🐥
 ╭────────────◊
-├‣ 𝐍𝐚𝐦𝐞: 𝐒𝐚𝐢𝐟 𝐈𝐬𝐥𝐚𝐦
-├‣ 𝐅𝐫𝐨𝐦: 𝐒𝐢𝐫𝐚𝐣𝐠𝐚𝐧𝐣 
-├‣ 𝐂𝐥𝐚𝐬𝐬: 𝟗
-├‣ 𝐀𝐠𝐞: 𝟏𝟓+
-├‣ 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤: 𝐡𝐭𝐭𝐩𝐬://𝐦.𝐦𝐞/𝐞𝐰𝐫𝐬𝐚𝐢𝐟𝟓𝟕𝟎
-├‣ 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦: 𝐍𝐚𝐢𝐢
-├‣ 𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐧𝐬𝐡𝐢𝐩: 𝐒𝐢𝐧𝐠𝐥𝐞 𝐮𝐥𝐭𝐫𝐚 𝐩𝐫𝐨 𝐦𝐚𝐱
-├‣ 𝐁𝐥𝐨𝐨𝐝 𝐆𝐫𝐨𝐮𝐩: 𝐀𝐁+ 
-╰────────────◊
-
-✦ ━━━━━━━ ✧ ━━━━━━━ ✦
+├‣ 𝗨𝗣𝗧𝗜𝗠𝗘 » ${uptimeString}
+├‣ 𝗨𝗦𝗘𝗥𝗦 » ${allUsers.length.toLocaleString()}
+├‣ 𝗧𝗛𝗥𝗘𝗔𝗗𝗦 » ${allThreads.length.toLocaleString()}
+├‣ 𝗔𝗖𝗧𝗜𝗩𝗘 » ${activeThreads.toLocaleString()}
+├‣ 𝗠𝗘𝗦𝗦𝗔𝗚𝗘𝗦 » ${totalMessages.toLocaleString()}
+╰────────────◊  
       `;
 
       api.sendMessage(message.trim(), event.threadID);
