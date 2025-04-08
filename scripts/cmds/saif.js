@@ -3,7 +3,7 @@ const fs = require("fs-extra");
 
 module.exports = {
   config: {
-    name: "Saif",
+    name: "info2",
     version: "1.1",
     author: "Saif",
     countDown: 5,
@@ -19,7 +19,7 @@ module.exports = {
     if (event.body) {
       let text = event.body.toLowerCase();
 
-      if (text === "saif" || text === "twinkle") {
+      if (text === "Sinfo" || text === "twinkle") {
         try {
           // Video URL
           const videoUrl = "https://i.imgur.com/KV1u6yV.mp4";
@@ -35,7 +35,7 @@ module.exports = {
           response.data.pipe(fs.createWriteStream(path));
           response.data.on("end", async () => {
             return message.reply({
-              body: `╔════════════╗\n║  Twinkle info ║\n╚════════════╝\n\n🌟 𝐎𝐰𝐧𝐞𝐫: 𝕊𝕒𝕚𝕗\n🤖 𝐁𝐨𝐭 𝐍𝐚𝐦𝐞: 𝒯𝓌𝒾𝓃𝓀𝓁𝑒 ✨\n📂 𝐂𝐚𝐭𝐞𝐠𝐨𝐫𝐲: 𝙽𝚘 𝙿𝚛𝚎𝚏𝚒𝚡\n\n💠 𝐌𝐚𝐝𝐞 𝐰𝐢𝐭𝐡 ❤️`,
+              body: `╔════════════╗\n║  Twinkle info ║\n╚════════════╝\n\n 𝐎𝐰𝐧𝐞𝐫: 𝗦𝗔𝗜𝗙\n 𝐁𝐨𝐭 𝐍𝐚𝐦𝐞: 𝗧𝘄𝗶𝗻𝗸𝗹𝗲 ✨\n : \n\n 𝐌𝐚𝐝𝐞 𝐰𝐢𝐭𝐡 ❤️`,
               attachment: fs.createReadStream(path),
             });
           });
