@@ -1,6 +1,7 @@
 const axios = require('axios');
 module.exports.config = {
   name: "pinterest",
+  aliases: "pin",
   category: "image",
   author: "Nyx",
 };
