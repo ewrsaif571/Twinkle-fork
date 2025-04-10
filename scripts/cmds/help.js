@@ -64,7 +64,7 @@ module.exports = {
         // Fixed: Set a valid image URL
         const helpListImages = [
           "https://i.imgur.com/m9nxSr2.gif", 
-          "https://i.imgur.com/sDAhN5j.gif"
+          ""
         ];
         const helpListImage = helpListImages[Math.floor(Math.random() * helpListImages.length)];
 
