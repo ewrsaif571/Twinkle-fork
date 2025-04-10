@@ -58,13 +58,13 @@ module.exports = {
         });
 
         const totalCommands = commands.size;
-        msg += `\n🌈𝗬𝗼𝘂𝗿𝗲 𝘁𝘄𝗶𝗻𝗸𝗹𝗲 𝘁𝗼𝘁𝗮𝗹 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 : ${totalCommands} \n`;
-        msg += `𝗔𝗱𝗺𝗶𝗻_𝖲 𝖠 𝖨 𝖥 ☘︎`;
+        msg += `\n🐿️𝗬𝗼𝘂𝗿𝗲 𝘁𝘄𝗶𝗻𝗸𝗹𝗲 𝘁𝗼𝘁𝗮𝗹 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 : ${totalCommands} \n`;
+        msg += `𝗔𝗱𝗺𝗶𝗻 𝖲 𝖠 𝖨 𝖥 >🎀 `;
 
         // Fixed: Set a valid image URL
         const helpListImages = [
-          "https://example.com/help-image1.jpg", // Replace with real URLs
-          "https://example.com/help-image2.jpg"
+          "https://i.imgur.com/m9nxSr2.gif", 
+          "https://i.imgur.com/sDAhN5j.gif"
         ];
         const helpListImage = helpListImages[Math.floor(Math.random() * helpListImages.length)];
 
