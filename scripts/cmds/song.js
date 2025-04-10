@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = {
   name:"song",
   author:"Nyx",
-  category:'song downloader'
+  category:'media'
 }
 const onStart = async ({args,api,message,event}) => {
   const data = args.join(' ')
