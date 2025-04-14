@@ -1,128 +1,17 @@
-const countries = [
-  { name: "United States", flag: "🇺🇸" },
-  { name: "Canada", flag: "🇨🇦" },
-  { name: "United Kingdom", flag: "🇬🇧" },
-  { name: "Australia", flag: "🇦🇺" },
-  { name: "Germany", flag: "🇩🇪" },
-  { name: "France", flag: "🇫🇷" },
-  { name: "Japan", flag: "🇯🇵" },
-  { name: "India", flag: "🇮🇳" },
-  { name: "Brazil", flag: "🇧🇷" },
-  { name: "South Africa", flag: "🇿🇦" },
-  { name: "Italy", flag: "🇮🇹" },
-  { name: "Spain", flag: "🇪🇸" },
-  { name: "Mexico", flag: "🇲🇽" },
-  { name: "Russia", flag: "🇷🇺" },
-  { name: "China", flag: "🇨🇳" },
-  { name: "South Korea", flag: "🇰🇷" },
-  { name: "Argentina", flag: "🇦🇷" },
-  { name: "Egypt", flag: "🇪🇬" },
-  { name: "Nigeria", flag: "🇳🇬" },
-  { name: "Sweden", flag: "🇸🇪" },
-  { name: "Switzerland", flag: "🇨🇭" },
-  { name: "Netherlands", flag: "🇳🇱" },
-  { name: "Belgium", flag: "🇧🇪" },
-  { name: "Greece", flag: "🇬🇷" },
-  { name: "Turkey", flag: "🇹🇷" },
-  { name: "Saudi Arabia", flag: "🇸🇦" },
-  { name: "Thailand", flag: "🇹🇭" },
-  { name: "Vietnam", flag: "🇻🇳" },
-  { name: "Philippines", flag: "🇵🇭" },
-  { name: "Malaysia", flag: "🇲🇾" },
-  { name: "Singapore", flag: "🇸🇬" },
-  { name: "New Zealand", flag: "🇳🇿" },
-  { name: "Ireland", flag: "🇮🇪" },
-  { name: "Portugal", flag: "🇵🇹" },
-  { name: "Poland", flag: "🇵🇱" },
-  { name: "Austria", flag: "🇦🇹" },
-  { name: "Denmark", flag: "🇩🇰" },
-  { name: "Finland", flag: "🇫🇮" },
-  { name: "Norway", flag: "🇳🇴" },
-  { name: "Iceland", flag: "🇮🇸" },
-  { name: "Czech Republic", flag: "🇨🇿" },
-  { name: "Hungary", flag: "🇭🇺" },
-  { name: "Ukraine", flag: "🇺🇦" },
-  { name: "Israel", flag: "🇮🇱" },
-  { name: "Qatar", flag: "🇶🇦" },
-  { name: "United Arab Emirates", flag: "🇦🇪" },
-  { name: "Pakistan", flag: "🇵🇰" },
-  { name: "Bangladesh", flag: "🇧🇩" },
-  { name: "Sri Lanka", flag: "🇱🇰" },
-  { name: "Nepal", flag: "🇳🇵" },
-  { name: "Afghanistan", flag: "🇦🇫" },
-  { name: "Iraq", flag: "🇮🇶" },
-  { name: "Iran", flag: "🇮🇷" },
-  { name: "Kazakhstan", flag: "🇰🇿" },
-  { name: "Uzbekistan", flag: "🇺🇿" },
-  { name: "Azerbaijan", flag: "🇦🇿" },
-  { name: "Georgia", flag: "🇬🇪" },
-  { name: "Armenia", flag: "🇦🇲" },
-  { name: "Lebanon", flag: "🇱🇧" },
-  { name: "Jordan", flag: "🇯🇴" },
-  { name: "Oman", flag: "🇴🇲" },
-  { name: "Kuwait", flag: "🇰🇼" },
-  { name: "Bahrain", flag: "🇧🇭" },
-  { name: "Maldives", flag: "🇲🇻" },
-  { name: "Mongolia", flag: "🇲🇳" },
-  { name: "Cambodia", flag: "🇰🇭" },
-  { name: "Laos", flag: "🇱🇦" },
-  { name: "Myanmar", flag: "🇲🇲" },
-  { name: "Brunei", flag: "🇧🇳" },
-  { name: "Timor-Leste", flag: "🇹🇱" },
-  { name: "Fiji", flag: "🇫🇯" },
-  { name: "Samoa", flag: "🇼🇸" },
-  { name: "Tonga", flag: "🇹🇴" },
-  { name: "Vanuatu", flag: "🇻🇺" },
-  { name: "Solomon Islands", flag: "🇸🇧" },
-  { name: "Papua New Guinea", flag: "🇵🇬" },
-  { name: "Kenya", flag: "🇰🇪" },
-  { name: "Ethiopia", flag: "🇪🇹" },
-  { name: "Tanzania", flag: "🇹🇿" },
-  { name: "Uganda", flag: "🇺🇬" },
-  { name: "Ghana", flag: "🇬🇭" },
-  { name: "Senegal", flag: "🇸🇳" },
-  { name: "Morocco", flag: "🇲🇦" },
-  { name: "Algeria", flag: "🇩🇿" },
-  { name: "Tunisia", flag: "🇹🇳" },
-  { name: "Libya", flag: "🇱🇾" },
-  { name: "Sudan", flag: "🇸🇩" },
-  { name: "South Sudan", flag: "🇸🇸" },
-  { name: "Cameroon", flag: "🇨🇲" },
-  { name: "Ivory Coast", flag: "🇨🇮" },
-  { name: "Mali", flag: "🇲🇱" },
-  { name: "Niger", flag: "🇳🇪" },
-  { name: "Chad", flag: "🇹🇩" },
-  { name: "Somalia", flag: "🇸🇴" },
-  { name: "Madagascar", flag: "🇲🇬" },
-  { name: "Mozambique", flag: "🇲🇿" },
-  { name: "Zambia", flag: "🇿🇲" },
-  { name: "Zimbabwe", flag: "🇿🇼" },
-  { name: "Botswana", flag: "🇧🇼" },
-  { name: "Namibia", flag: "🇳🇦" },
-  { name: "Angola", flag: "🇦🇴" },
-  { name: "Cuba", flag: "🇨🇺" },
-  { name: "Jamaica", flag: "🇯🇲" },
-  { name: "Haiti", flag: "🇭🇹" },
-  { name: "Dominican Republic", flag: "🇩🇴" },
-  { name: "Puerto Rico", flag: "🇵🇷" },
-  { name: "Costa Rica", flag: "🇨🇷" },
-  { name: "Panama", flag: "🇵🇦" },
-  { name: "Colombia", flag: "🇨🇴" },
-  { name: "Venezuela", flag: "🇻🇪" },
-  { name: "Ecuador", flag: "🇪🇨" },
-  { name: "Peru", flag: "🇵🇪" },
-  { name: "Chile", flag: "🇨🇱" },
-  { name: "Bolivia", flag: "🇧🇴" },
-  { name: "Paraguay", flag: "🇵🇾" },
-  { name: "Uruguay", flag: "🇺🇾" },
-];
+const axios = require("axios");
+const baseApiUrl = async () => {
+  const base = await axios.get(
+    `https://raw.githubusercontent.com/Mostakim0978/D1PT0/refs/heads/main/baseApiUrl.json`,
+  );
+  return base.data.api;
+};
 
 module.exports = {
   config: {
     name: "flag",
     aliases: ["flagGame"],
     version: "3.0",
-    author: "SA IF👨‍🍼",
+    author: "Dipto",
     countDown: 0,
     role: 0,
     description: {
@@ -133,7 +22,7 @@ module.exports = {
       en: "{pn}",
     },
   },
-  onReply: async function ({ api, event, Reply, usersData }) {
+  onReply: async function ({ api, event, Reply, usersData , threadsData }) {
     const { country, attempts } = Reply;
     const maxAttempts = 5;
     if (event.type == "message_reply") {
@@ -158,6 +47,16 @@ module.exports = {
               exp: userData.exp + getExp,
               data: userData.data,
             });
+            const grp = await threadsData.get(event.threadID);
+            const userID = event.senderID;
+            if (!grp.data.flagWins) {
+              grp.data.flagWins = {};
+            }
+            if (!grp.data.flagWins[userID]) {
+              grp.data.flagWins[userID] = 0;
+            }
+            grp.data.flagWins[userID] += 1;
+            await threadsData.set(event.threadID, grp);
           } catch (err) {
             console.log("Error: ", err.message);
           } finally {
@@ -168,7 +67,7 @@ module.exports = {
           Reply.attempts += 1;
           global.GoatBot.onReply.set(Reply.messageID, Reply);
           api.sendMessage(
-            `❌ | Wrong Answer. You have ${maxAttempts - Reply.attempts} attempts left.\n✅ | Try Again baby!`,
+            `❌ | Wrong Answer.You have ${maxAttempts - Reply.attempts} attempts left.\n✅ | Try Again baby!`,
             event.threadID,
             event.messageID,
           );
@@ -177,16 +76,17 @@ module.exports = {
     }
   },
 
-  onStart: async function ({ api, args, event, usersData }) {
+  onStart: async function ({ api, args, event,threadsData }) {
     try {
       if (!args[0]) {
-        // Select a random country from the dataset
-        const randomCountry = countries[Math.floor(Math.random() * countries.length)];
-        const { name, flag } = randomCountry;
-
+        const response = await axios.get(
+          `${await baseApiUrl()}/flagGame?randomFlag=random`,
+        );
+        const { link, country } = response.data;
         await api.sendMessage(
           {
-            body: `Guess the country name for this flag: ${flag}`,
+            body: "Guess this flag name.",
+            attachment: await global.utils.getStreamFromURL(link),
           },
           event.threadID,
           (error, info) => {
@@ -195,12 +95,30 @@ module.exports = {
               type: "reply",
               messageID: info.messageID,
               author: event.senderID,
-              country: name,
+              link,
+              country,
               attempts: 0,
             });
           },
           event.messageID,
         );
+      }else if (args[0] === "list") {
+        const threadData = await threadsData.get(event.threadID);
+        const { data } = threadData;
+        const flagWins = data.flagWins || {};
+
+        const flagStatsArray = Object.entries(flagWins);
+        flagStatsArray.sort((a, b) => b[1] - a[1]);
+
+        let message = "Flag Game Rankings:\n\n";
+        let i = 0;
+        for (const [userID, winCount] of flagStatsArray) {
+          const userName = await usersData.getName(userID);
+          message += `${i + 1}. ${userName}: ${winCount} wins\n`;
+          i++;
+        }
+
+        return api.sendMessage(message, event.threadID, event.messageID);
       }
     } catch (error) {
       console.error(`Error: ${error.message}`);
