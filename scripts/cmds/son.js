@@ -1,6 +1,6 @@
 module.exports.config = {
     name: "son",
-    category: "automation",
+    category: "murgi",
     author: "Romim"
 }
 
