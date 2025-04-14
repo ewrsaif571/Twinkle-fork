@@ -6,7 +6,7 @@ module.exports = {
     credits: "XNIL",
     prefix: 'awto',
     description: "Inbox",
-    category: "chat box",
+    category: "box chat",
     cooldowns: 5
   },
 
