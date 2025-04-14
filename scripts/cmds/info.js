@@ -9,7 +9,7 @@ module.exports = {
     author: "Ayan mgi 🥰",
     shortDescription: "Display bot and user information along with uptime and Imgur images/videos.",
     longDescription: "Show detailed info about the bot and the user, with uptime and Imgur image/video features.",
-    category: "INFO",
+    category: "info",
     guide: {
       en: "[user]",
     },
