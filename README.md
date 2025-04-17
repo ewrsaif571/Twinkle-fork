@@ -10,7 +10,7 @@
 - If you encounter any issues or have questions related to this project, please don't hesitate to reach out to us on messenger. we're here to assist you!
 
 <p align="center">
-		<img align="center" alt="PNG" src="https://i.imgur.com/v02cPMk.jpeg"/>
+		<img align="center" alt="PNG" src="https://i.imgur.com/vVi4qEx.jpeg"/>
 <h1 align='center'>
 	
 - [🎀 **admin**](#-admin)
