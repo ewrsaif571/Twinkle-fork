@@ -20,4 +20,6 @@
 
 ## 📝 **admin**
 - Fix goat bot fork V2!
+- OWNER messenger:https://m.me/ewrsaif570
+- OWNER FB:https://www.facebook.com/naruto.uzomaki09
 # fork owner_NIROB || SAIF
