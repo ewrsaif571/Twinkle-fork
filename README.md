@@ -1,5 +1,5 @@
 <img src="https://i.imgur.com/ST7083b.jpeg" alt="banner">
-<h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Welcome Messenger Goat Bot V2 🎀</h1> <h Fixed fork fix by SAIF - HASAN - ROMIM  >
+<h1 align="center"><img src="./dashboard/images/logo-non-bg.png" width="22px"> Welcome Messenger Goat Bot V2 🎀</h1> 
 
 
 ## Introduction
@@ -13,7 +13,7 @@
 		<img align="center" alt="PNG" src="https://i.imgur.com/v02cPMk.jpeg"/>
 <h1 align='center'>
 	
-- [📝 **Note**](#-note)
+- [📝 **admin**](#-admin)
 - [🚧 **Requirement**](#-requirement)
 - [📝 **Tutorial**](#-tutorial)
 - [🔔 **How to get notification when have new update?**](#-how-to-get-notification-when-have-new-update)
@@ -29,10 +29,9 @@
 
 <hr>
 
-## 📝 **Note**
-- This is a messenger chat bot using a personal account, using an [unofficial api](https://github.com/ntkhang03/fb-chat-api/blob/master/DOCS.md) ([Origin here](https://github.com/Schmavery/facebook-chat-api)) and this may lead to facebook account being locked due to spam or other reasons. 
-- So, I recommend using a clone account (one that you're willing to throw away at any time)
-- ***I am not responsible for any problems that may arise from using this bot.***
+## 📝 **admin**
+- Fixed goat bot fork!
+- fork owner_NIROB || SAIF
 
 ## 🚧 **Requirement**
 - Node.js 16.x [Download](https://nodejs.org/dist/v16.20.0) | [Home](https://nodejs.org/en/download/) | [Other versions](https://nodejs.org/en/download/releases/)
