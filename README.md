@@ -58,5 +58,5 @@
 <hr>
 
 - Fix goat bot fork V2!
-- OWNER messenger:https://m.me/ewrsaif570
+- messenger : https://m.me/ewrsaif570
 # fork owner_NIROB || SAIF 🐔
