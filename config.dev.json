@@ -23,7 +23,7 @@
     "whiteListIds": ["set your uid"],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
-  "nickNameBot": "You"r Baby🎀",
+  "nickNameBot": "You'r Baby🎀",
   "prefix": "!",
   "database": {
     "type": "",
